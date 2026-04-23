@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import KoalaMascot from '../components/KoalaMascot'
 import koalasImg from '../assets/c-valdez-KhpFiOX9MdQ-unsplash.jpg'
 
 export default function About() {
@@ -14,12 +13,11 @@ export default function About() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
         <div className="max-w-3xl mx-auto relative z-10">
-          <div className="animate-in zoom-in-75 fade-in duration-600 fill-mode-both flex justify-center mb-4">
-            <KoalaMascot className="w-24 animate-float-slow drop-shadow-2xl" />
-          </div>
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-600 fill-mode-both delay-100">
             <div className="inline-flex items-center gap-3 bg-white/15 backdrop-blur-sm text-white text-sm font-medium px-5 py-2.5 rounded-full mb-6 shadow-md border border-white/20">
-              <span>ℹ️</span>
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
               <span>Built for Australians, by an Australian</span>
             </div>
           </div>
@@ -38,8 +36,10 @@ export default function About() {
         {/* Why this site exists */}
         <div className="animate-in fade-in slide-in-from-bottom-6 duration-600 fill-mode-both delay-100 premium-card p-8">
           <div className="flex items-center gap-3 mb-5">
-            <div className="animate-in zoom-in-50 duration-400 fill-mode-both delay-200 w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-md">
-              <span className="text-xl">💡</span>
+            <div className="animate-in zoom-in-50 duration-400 fill-mode-both delay-200 w-10 h-10 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-md text-white">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
+              </svg>
             </div>
             <h2 className="text-2xl font-bold text-gray-900">Why this site exists</h2>
           </div>
@@ -61,24 +61,45 @@ export default function About() {
         {/* Who built this */}
         <div className="animate-in fade-in slide-in-from-bottom-6 duration-600 fill-mode-both delay-200 premium-card p-8">
           <div className="flex items-center gap-3 mb-6">
-            <div className="animate-in zoom-in-50 duration-400 fill-mode-both delay-300 w-10 h-10 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl flex items-center justify-center shadow-md">
-              <span className="text-xl">👤</span>
+            <div className="animate-in zoom-in-50 duration-400 fill-mode-both delay-300 w-10 h-10 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl flex items-center justify-center shadow-md text-white">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
             </div>
             <h2 className="text-2xl font-bold text-gray-900">Who built this</h2>
           </div>
-          <div className="flex gap-5 items-start bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-100 rounded-2xl p-6">
-            <div className="animate-in zoom-in-75 fade-in duration-500 fill-mode-both delay-400 flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white font-bold text-2xl flex items-center justify-center shadow-lg">
-              RK
-            </div>
-            <div>
-              <p className="font-bold text-gray-900 text-lg">Ryan Kum</p>
-              <p className="text-sm text-gray-500 mb-3">RMIT Computer Science Graduate · Melbourne, Australia</p>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                I built ReclaimAU as a personal project because I believe access to honest,
-                judgment-free information can make a real difference. Gambling harm touches more
-                Australian families than most people know, and I wanted to create something that meets
-                people where they are — quietly, without pressure.
-              </p>
+
+          <div className="relative overflow-hidden rounded-2xl p-6 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 border border-amber-100">
+            {/* Decorative background orb */}
+            <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-amber-300/20 blur-2xl pointer-events-none" />
+
+            <div className="relative flex flex-col sm:flex-row gap-6 items-start">
+              {/* Avatar */}
+              <div className="animate-in zoom-in-75 fade-in duration-500 fill-mode-both delay-400 flex-shrink-0 relative">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 text-white font-black text-2xl flex items-center justify-center shadow-xl ring-4 ring-amber-200/60">
+                  RK
+                </div>
+                {/* Online dot */}
+                <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-400 border-2 border-white shadow-sm flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-green-300 animate-ping absolute" />
+                </div>
+              </div>
+
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-3 mb-1">
+                  <p className="font-black text-gray-900 text-xl">Ryan Kum</p>
+                  <span className="text-xs bg-amber-100 text-amber-700 font-semibold px-2.5 py-0.5 rounded-full border border-amber-200">
+                    🇦🇺 Melbourne
+                  </span>
+                </div>
+                <p className="text-sm text-gray-500 mb-4 font-medium">RMIT Computer Science Graduate</p>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  I built ReclaimAU as a personal project because I believe access to honest,
+                  judgment-free information can make a real difference. Gambling harm touches more
+                  Australian families than most people know, and I wanted to create something that meets
+                  people where they are — quietly, without pressure.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -86,8 +107,10 @@ export default function About() {
         {/* What this site is / isn't */}
         <div className="animate-in fade-in slide-in-from-bottom-6 duration-600 fill-mode-both delay-300 premium-card p-8">
           <div className="flex items-center gap-3 mb-6">
-            <div className="animate-in zoom-in-50 duration-400 fill-mode-both delay-400 w-10 h-10 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-md">
-              <span className="text-xl">📋</span>
+            <div className="animate-in zoom-in-50 duration-400 fill-mode-both delay-400 w-10 h-10 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-md text-white">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="m9 14 2 2 4-4"/>
+              </svg>
             </div>
             <h2 className="text-2xl font-bold text-gray-900">What this site is — and isn't</h2>
           </div>
@@ -114,7 +137,11 @@ export default function About() {
         {/* Crisis note */}
         <div className="animate-in fade-in zoom-in-95 duration-600 fill-mode-both delay-400 bg-gradient-to-r from-red-50 via-pink-50 to-red-50 border border-red-200 rounded-3xl p-7">
           <div className="flex items-start gap-4">
-            <span className="animate-in zoom-in-50 duration-500 fill-mode-both delay-500 text-3xl">🆘</span>
+            <div className="animate-in zoom-in-50 duration-500 fill-mode-both delay-500 flex-shrink-0 w-10 h-10 bg-gradient-to-br from-red-400 to-rose-500 rounded-2xl flex items-center justify-center shadow-md text-white">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.86 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
             <div>
               <p className="font-bold text-gray-800 mb-2">In crisis right now?</p>
               <p className="text-sm text-gray-600 leading-relaxed">

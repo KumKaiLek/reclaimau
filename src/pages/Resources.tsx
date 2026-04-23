@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import friendsImg from '../assets/helena-lopes-PGnqT0rXWLs-unsplash.jpg'
 
 const resources = [
@@ -8,7 +9,7 @@ const resources = [
     phone: '1800 858 858',
     url: 'https://www.gamblinghelponline.org.au',
     urlLabel: 'gamblinghelponline.org.au',
-    available: '24/7', cost: 'Free', icon: '🆘', priority: true,
+    available: '24/7', cost: 'Free', icon: '🛟', priority: true,
   },
   {
     name: 'Lifeline Australia',
@@ -17,7 +18,7 @@ const resources = [
     phone: '13 11 14',
     url: 'https://www.lifeline.org.au',
     urlLabel: 'lifeline.org.au',
-    available: '24/7', cost: 'Free', icon: '💙', priority: false,
+    available: '24/7', cost: 'Free', icon: '🫂', priority: false,
   },
   {
     name: 'Beyond Blue',
@@ -26,7 +27,7 @@ const resources = [
     phone: '1300 22 4636',
     url: 'https://www.beyondblue.org.au',
     urlLabel: 'beyondblue.org.au',
-    available: '24/7', cost: 'Free', icon: '🧠', priority: false,
+    available: '24/7', cost: 'Free', icon: '💭', priority: false,
   },
   {
     name: 'Gamblers Anonymous Australia',
@@ -35,7 +36,7 @@ const resources = [
     phone: null,
     url: 'https://www.gamblersanonymous.org.au',
     urlLabel: 'gamblersanonymous.org.au',
-    available: 'Meeting times vary', cost: 'Free', icon: '🤝', priority: false,
+    available: 'Meeting times vary', cost: 'Free', icon: '🫱', priority: false,
   },
   {
     name: 'Gam-Anon Australia',
@@ -44,7 +45,7 @@ const resources = [
     phone: null,
     url: 'https://www.gamanon.org.au',
     urlLabel: 'gamanon.org.au',
-    available: 'Meeting times vary', cost: 'Free', icon: '👨‍👩‍👧', priority: false,
+    available: 'Meeting times vary', cost: 'Free', icon: '🏡', priority: false,
   },
   {
     name: 'MensLine Australia',
@@ -53,7 +54,7 @@ const resources = [
     phone: '1300 78 99 78',
     url: 'https://mensline.org.au',
     urlLabel: 'mensline.org.au',
-    available: '24/7', cost: 'Free', icon: '🙋', priority: false,
+    available: '24/7', cost: 'Free', icon: '💬', priority: false,
   },
   {
     name: 'National Debt Helpline',
@@ -62,7 +63,7 @@ const resources = [
     phone: '1800 007 007',
     url: 'https://ndh.org.au',
     urlLabel: 'ndh.org.au',
-    available: 'Mon–Fri, 9:30am–4:30pm', cost: 'Free', icon: '💰', priority: false,
+    available: 'Mon–Fri, 9:30am–4:30pm', cost: 'Free', icon: '💸', priority: false,
   },
 ]
 
@@ -77,6 +78,13 @@ const typeColors: Record<string, string> = {
 }
 
 export default function Resources() {
+  useEffect(() => {
+    if (window.location.hash) {
+      const el = document.querySelector(window.location.hash)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }, [])
+
   return (
     <main className="overflow-hidden">
       {/* Hero — friends at sunset background */}
@@ -90,7 +98,7 @@ export default function Resources() {
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-600 fill-mode-both">
             <div className="inline-flex items-center gap-3 bg-white/15 backdrop-blur-sm text-white text-sm font-medium px-5 py-2.5 rounded-full mb-6 shadow-md border border-white/20">
-              <span>📚</span>
+              <span>📖</span>
               <span>7 trusted Australian services — all free</span>
             </div>
           </div>
@@ -126,7 +134,12 @@ export default function Resources() {
           {resources.map((r, index) => (
             <article
               key={r.name}
-              className={`animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both premium-card p-6 flex flex-col gap-4 ${r.priority ? 'sm:col-span-2' : ''}`}
+              id={r.type === 'Financial Counselling' ? 'financial' : undefined}
+              className={`animate-in fade-in slide-in-from-bottom-4 duration-500 fill-mode-both p-6 flex flex-col gap-4 ${
+                r.priority
+                  ? 'sm:col-span-2 gradient-border-card ring-2 ring-red-200 shadow-2xl shadow-red-500/10'
+                  : 'premium-card'
+              }`}
               style={{ animationDelay: `${400 + index * 80}ms` }}
             >
               <div className="flex items-start gap-4">

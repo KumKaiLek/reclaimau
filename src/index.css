@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -25,6 +25,20 @@
   * {
     box-sizing: border-box;
   }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #fef3e2;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #f59e0b, #ef4444);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #d97706, #dc2626);
+  }
 }
 
 @layer components {
@@ -33,7 +47,7 @@
   }
 
   .premium-button {
-    @apply relative overflow-hidden bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center relative overflow-hidden bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-0.5;
   }
 
   .premium-button::before {
@@ -50,9 +64,46 @@
   .premium-button:hover::before {
     left: 100%;
   }
+
+  .gradient-border-card {
+    @apply relative bg-white rounded-3xl shadow-xl;
+  }
+
+  .gradient-border-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 1.75rem;
+    background: linear-gradient(135deg, #f59e0b, #ef4444, #a855f7, #3b82f6, #f59e0b);
+    background-size: 300% 300%;
+    animation: gradientShift 5s ease infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .gradient-border-card:hover::before {
+    opacity: 1;
+  }
+
+  .glow-amber {
+    text-shadow: 0 0 30px rgba(245, 158, 11, 0.5), 0 0 60px rgba(245, 158, 11, 0.25);
+  }
+
+  .crisis-pulse {
+    animation: crisisPulse 2.5s ease-out infinite;
+  }
 }
 
 @layer utilities {
+  .animate-orb-1 { animation: orbFloat1 14s ease-in-out infinite; }
+  .animate-orb-2 { animation: orbFloat2 18s ease-in-out infinite; }
+  .animate-orb-3 { animation: orbFloat3 11s ease-in-out infinite; }
+  .animate-gradient-shift { animation: gradientShift 6s ease infinite; background-size: 200% 200%; }
+  .animate-confetti { animation: confettiFall linear forwards; }
+  .animate-question-in { animation: questionSlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-score-grow { animation: scoreGrow 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
   .animate-fade-in-up {
     animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
@@ -184,4 +235,53 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(30px, -50px) scale(1.06); }
+  50%  { transform: translate(-25px, -70px) scale(0.94); }
+  75%  { transform: translate(-45px, -25px) scale(1.03); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-55px, 35px) scale(1.08); }
+  66%  { transform: translate(25px, 55px) scale(0.92); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50%  { transform: translate(45px, -35px) rotate(8deg); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+@keyframes crisisPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+  70%  { box-shadow: 0 0 0 14px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(220%) skewX(-15deg); }
+}
+
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  75%  { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes questionSlideIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scoreGrow {
+  from { width: 0%; }
 }

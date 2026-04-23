@@ -1,25 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 
 const links = [
   { to: '/', label: 'Home', icon: '🏠' },
-  { to: '/quiz', label: 'Self-Assessment', icon: '📋' },
-  { to: '/resources', label: 'Resources', icon: '📚' },
-  { to: '/about', label: 'About', icon: 'ℹ️' },
+  { to: '/quiz', label: 'Self-Assessment', icon: '📝' },
+  { to: '/resources', label: 'Resources', icon: '📖' },
+  { to: '/about', label: 'About', icon: '👤' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm border-b border-amber-100/50 sticky top-0 z-50 shadow-lg shadow-amber-500/5">
+    <header className={`bg-white/95 backdrop-blur-sm border-b border-amber-100/50 sticky top-0 z-50 transition-shadow duration-300 ${scrolled ? 'shadow-xl shadow-amber-500/10' : 'shadow-lg shadow-amber-500/5'}`}>
       <div className="max-w-7xl mx-auto px-4 h-18 flex items-center justify-between">
         <Link
           to="/"
-          className="text-3xl font-bold text-gray-800 tracking-tight hover:text-amber-600 transition-all duration-300 hover:scale-105"
+          className="text-3xl font-black tracking-tight hover:scale-105 transition-all duration-300 group"
           onClick={() => setOpen(false)}
         >
-          Reclaim<span className="text-amber-500">AU</span>
+          <span className="text-gray-800 group-hover:text-gray-900 transition-colors">Reclaim</span>
+          <span className="bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent">AU</span>
         </Link>
 
         {/* Desktop nav */}
@@ -42,6 +50,15 @@ export default function Navbar() {
             </NavLink>
           ))}
         </nav>
+
+        {/* Crisis hotline pill — desktop only */}
+        <a
+          href="tel:1800858858"
+          className="hidden lg:flex items-center gap-2 bg-red-50 border border-red-200 text-red-700 text-sm font-bold px-4 py-2.5 rounded-xl hover:bg-red-100 hover:border-red-300 transition-all duration-300 crisis-pulse"
+        >
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse flex-shrink-0" />
+          <span>1800 858 858</span>
+        </a>
 
         {/* Mobile hamburger */}
         <button
